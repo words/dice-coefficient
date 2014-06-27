@@ -1,0 +1,16 @@
+{
+  "name": "dice-coefficient",
+  "version": "0.0.1",
+  "description": "Sørensen–Dice coefficient",
+  "keywords": [
+    "sorensen",
+    "index",
+    "dice",
+    "coefficient"
+  ],
+  "repository": "wooorm/dice-coefficient",
+  "license": "MIT",
+  "scripts" : [
+    "index.js"
+  ]
+}
