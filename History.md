@@ -1,5 +1,5 @@
 
-n.n.n / 2014-07-14
+0.1.0 / 2014-07-14
 ==================
 
  * Added competition to benchmarks (fixes #1)
