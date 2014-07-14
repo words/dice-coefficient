@@ -2,9 +2,23 @@
 
 /* eslint-disable no-cond-assign */
 
-var distance, source;
+var distance, source, natural, cljFuzzy;
 
 distance = require('..');
+
+try {
+    natural = require('natural').DiceCoefficient;
+    cljFuzzy = require('clj-fuzzy').metrics.dice;
+} catch (error) {
+    console.log(error);
+    throw new Error(
+        '\u001B[0;31m' +
+        'The libraries needed by this benchmark could not be found. ' +
+        'Please execute:\n' +
+        '\tnpm run install-benchmark\n\n' +
+        '\u001B[0m'
+    );
+}
 
 /* The first 100 words from Letterpress: https://github.com/atebits/Words */
 source = Array(11).join([
@@ -114,10 +128,41 @@ source = Array(11).join([
 suite('dice-coefficient', function () {
     bench('op/s * 1,000', function (next) {
         var iterator = -1,
-            value, previousValue;
+            previousValue = source[source.length - 1],
+            value;
 
         while (value = source[++iterator]) {
             distance(previousValue, value);
+            previousValue = value;
+        }
+
+        next();
+    });
+});
+
+suite('natural', function () {
+    bench('op/s * 1,000', function (next) {
+        var iterator = -1,
+            previousValue = source[source.length - 1],
+            value;
+
+        while (value = source[++iterator]) {
+            natural(previousValue, value);
+            previousValue = value;
+        }
+
+        next();
+    });
+});
+
+suite('clj-fuzzy', function () {
+    bench('op/s * 1,000', function (next) {
+        var iterator = -1,
+            previousValue = source[source.length - 1],
+            value;
+
+        while (value = source[++iterator]) {
+            cljFuzzy(previousValue, value);
             previousValue = value;
         }
 
