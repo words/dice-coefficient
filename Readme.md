@@ -4,14 +4,19 @@ The [Sørensen–Dice coefficient](http://en.wikipedia.org/wiki/Sørensen–Dice
 
 ## Installation
 
-NPM:
+npm:
 ```sh
 $ npm install dice-coefficient
 ```
 
-Component.js:
+Component:
 ```sh
 $ component install wooorm/dice-coefficient
+```
+
+Bower:
+```sh
+$ bower install dice-coefficient
 ```
 
 ## Usage
