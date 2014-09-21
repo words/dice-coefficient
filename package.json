@@ -35,21 +35,5 @@
     "benchmark" : "node_modules/.bin/matcha",
     "install-benchmark": "npm install clj-fuzzy natural",
     "make": "npm run lint && npm run coverage"
-  },
-  "testling": {
-    "files": "spec/dice-coefficient.spec.js",
-    "harness": "mocha",
-    "browsers": [
-      "iexplore/latest",
-      "chrome/latest",
-      "chrome/canary",
-      "firefox/latest",
-      "firefox/nightly",
-      "opera/latest",
-      "opera/next",
-      "safari/latest",
-      "iphone/latest",
-      "android-browser/latest"
-    ]
   }
 }
