@@ -1,0 +1,29 @@
+{
+  "name": "dice-coefficient",
+  "version": "0.1.0",
+  "description": "Sørensen–Dice coefficient",
+  "license": "MIT",
+  "keywords": [
+    "sorensen",
+    "index",
+    "dice",
+    "coefficient"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/dice-coefficient.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "component.json",
+    "package.json",
+    "coverage",
+    "node_modules",
+    "spec"
+  ]
+}
