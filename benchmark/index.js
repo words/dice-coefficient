@@ -1,17 +1,25 @@
 'use strict';
 
-/* eslint-disable no-cond-assign */
+var distance,
+    words,
+    natural,
+    cljFuzzy;
 
-var distance, source, natural, cljFuzzy;
+/**
+ * Module dependencies.
+ */
 
 distance = require('..');
+
+/**
+ * Optional module dependencies.
+ */
 
 try {
     natural = require('natural').DiceCoefficient;
     cljFuzzy = require('clj-fuzzy').metrics.dice;
 } catch (error) {
-    console.log(error);
-    throw new Error(
+    console.log(
         '\u001B[0;31m' +
         'The libraries needed by this benchmark could not be found. ' +
         'Please execute:\n' +
@@ -20,8 +28,12 @@ try {
     );
 }
 
-/* The first 100 words from Letterpress: https://github.com/atebits/Words */
-source = Array(11).join([
+/**
+ * The first 1000 words from Letterpress:
+ *   https://github.com/atebits/Words
+ */
+
+words = Array(11).join([
     'aa',
     'aah',
     'aahed',
@@ -125,47 +137,54 @@ source = Array(11).join([
     'abattoirs'
 ].join('|')).split('|');
 
+/**
+ * Benchmark this module.
+ */
+
 suite('dice-coefficient', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            previousValue = source[source.length - 1],
-            value;
+    bench('op/s * 1,000', function () {
+        words.forEach(function (word, index) {
+            var prevWord;
 
-        while (value = source[++iterator]) {
-            distance(previousValue, value);
-            previousValue = value;
-        }
+            prevWord = words[index - 1] || words[words.length - 1];
 
-        next();
+            distance(prevWord, word);
+        });
     });
 });
 
-suite('natural', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            previousValue = source[source.length - 1],
-            value;
+/**
+ * Benchmark `natural`.
+ */
 
-        while (value = source[++iterator]) {
-            natural(previousValue, value);
-            previousValue = value;
-        }
+if (natural) {
+    suite('natural', function () {
+        bench('op/s * 1,000', function () {
+            words.forEach(function (word, index) {
+                var prevWord;
 
-        next();
+                prevWord = words[index - 1] || words[words.length - 1];
+
+                natural(prevWord, word);
+            });
+        });
     });
-});
+}
 
-suite('clj-fuzzy', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            previousValue = source[source.length - 1],
-            value;
+/**
+ * Benchmark `clj-fuzzy`.
+ */
 
-        while (value = source[++iterator]) {
-            cljFuzzy(previousValue, value);
-            previousValue = value;
-        }
+if (cljFuzzy) {
+    suite('clj-fuzzy', function () {
+        bench('op/s * 1,000', function () {
+            words.forEach(function (word, index) {
+                var prevWord;
 
-        next();
+                prevWord = words[index - 1] || words[words.length - 1];
+
+                cljFuzzy(prevWord, word);
+            });
+        });
     });
-});
+}
