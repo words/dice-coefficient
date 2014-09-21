@@ -27,7 +27,7 @@ diceCoefficient("night", "nacht"); // 0.25
 diceCoefficient("night", "nacht") === diceCoefficient("NiGhT", "NACHT"); // true
 ```
 
-## Other Lancaster implementations
+## Other Dice-coefficient implementations
 
 - [NaturalNode/natural](https://github.com/NaturalNode/natural);
 - [Yomguithereal/clj-fuzzy](https://github.com/Yomguithereal/clj-fuzzy) — A bit slow.
