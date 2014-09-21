@@ -9,6 +9,9 @@
     "dice",
     "coefficient"
   ],
+  "dependencies": {
+    "n-gram": "0.0.1"
+  },
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
     "eslint": "^0.8.0",
@@ -30,7 +33,7 @@
     "lint-benchmark": "node_modules/.bin/eslint benchmark/index.js --env node --global suite,set,bench --rule 'quotes: [2, single]'",
     "lint-style": "node_modules/.bin/jscs index.js spec/dice-coefficient.spec.js benchmark/index.js --reporter=inline",
     "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- spec/dice-coefficient.spec.js",
-    "benchmark" : "node_modules/.bin/matcha",
+    "benchmark": "node_modules/.bin/matcha",
     "install-benchmark": "npm install clj-fuzzy natural",
     "make": "npm run lint && npm run coverage"
   }

@@ -9,8 +9,11 @@
     "dice",
     "coefficient"
   ],
+  "dependencies": {
+    "wooorm/n-gram": "~0.0.1"
+  },
   "repository": "wooorm/dice-coefficient",
-  "scripts" : [
+  "scripts": [
     "index.js"
   ]
 }
