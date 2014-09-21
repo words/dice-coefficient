@@ -1,12 +1,25 @@
 'use strict';
 
-var getBigrams;
-
 /**
- * Module dependencies.
+ * Get bigrams from a value.
+ *
+ * @param {*} value - The value to stringify and convert into bigrams.
+ * @return {Array.<string>} bigrams
  */
 
-getBigrams = require('n-gram').bigram;
+function getPairs(value) {
+    value = String(value).toLowerCase();
+
+    var iterator = -1,
+        length = value.length - 1,
+        pairs = [];
+
+    while (++iterator < length) {
+        pairs[iterator] = value.substring(iterator, iterator + 2);
+    }
+
+    return pairs;
+}
 
 /**
  * Get the edit-distance according to Dice between two values.
@@ -26,8 +39,8 @@ function diceCoefficient(value, alternative) {
         alternativePair,
         pair;
 
-    pairs = getBigrams(String(value).toLowerCase());
-    alternativePairs = getBigrams(String(alternative).toLowerCase());
+    pairs = getPairs(value);
+    alternativePairs = getPairs(alternative);
     intersections = 0;
     iterator = -1;
     alternativeLength = alternativePairs.length;
@@ -53,5 +66,9 @@ function diceCoefficient(value, alternative) {
 
     return 2 * intersections / (pairs.length + alternativeLength);
 }
+
+/**
+ * Expose `diceCoefficient`.
+ */
 
 module.exports = diceCoefficient;
