@@ -43,21 +43,20 @@ diceCoefficient("night", "nacht") === diceCoefficient("NiGhT", "NACHT"); // true
 Run the benchmark yourself:
 
 ```sh
-$ npm run install-benchmark # Just once of course.
 $ npm run benchmark
 ```
 
-On a MacBook Air, it runs about 748,000 op/s, which is more than 4 times faster than natural.
+On a MacBook Air, it runs about 725,000 op/s, which is more than 4 times faster than natural.
 
 ```
            dice-coefficient
-  748 op/s » op/s * 1,000
+  725 op/s » op/s * 1,000
 
            natural
-  154 op/s » op/s * 1,000
+  158 op/s » op/s * 1,000
 
            clj-fuzzy
-   10 op/s » op/s * 1,000
+   9 op/s » op/s * 1,000
 ```
 
 ## License
