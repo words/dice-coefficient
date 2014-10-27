@@ -1,4 +1,21 @@
 
+n.n.n / 2014-10-27
+==================
+
+ * Refactor benchmark
+ * Refactor test
+ * Refactor property order in `package.json`
+ * Add broader n-gram version range to `bower.json`
+ * Add `.eslintrc`
+ * Remove clj-fuzzy from benchmark
+ * Refactor `.jscs.json`
+ * Move `benchmark/index.js` to `benchmark.js`
+ * Move `spec/dice-coefficient.spec.js` to `test.js`
+ * Update n-gram
+ * Update `.gitignore`, `.npmignore`, bower ignore
+ * Disallow space after object keys in `.jscs.json`
+ * Update eslint, mocha
+
 0.1.1 / 2014-09-21
 ==================
 
