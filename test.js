@@ -7,7 +7,7 @@ var diceCoefficient,
  * Module dependencies.
  */
 
-diceCoefficient = require('..');
+diceCoefficient = require('./');
 assert = require('assert');
 
 /**
