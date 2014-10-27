@@ -21,6 +21,7 @@ function diceCoefficient(value, alternative) {
         alternativePairs,
         intersections,
         iterator,
+        length,
         alternativeLength,
         alternativeIterator,
         alternativePair,
@@ -31,8 +32,11 @@ function diceCoefficient(value, alternative) {
     intersections = 0;
     iterator = -1;
     alternativeLength = alternativePairs.length;
+    length = pairs.length;
 
-    while (pair = pairs[++iterator]) {
+    while (++iterator < length) {
+        pair = pairs[iterator];
+
         alternativeIterator = -1;
 
         while (++alternativeIterator < alternativeLength) {
