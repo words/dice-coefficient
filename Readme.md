@@ -49,10 +49,10 @@ On a MacBook Air, it runs about 725,000 op/s, which is more than 4 times faster 
 
 ```
            dice-coefficient
-  725 op/s » op/s * 1,000
+  774 op/s » op/s * 1,000
 
            natural
-  158 op/s » op/s * 1,000
+   99 op/s » op/s * 1,000
 ```
 
 ## License

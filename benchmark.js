@@ -1,18 +1,18 @@
 'use strict';
 
-var distance,
-    words,
-    natural;
-
 /**
- * Module dependencies.
+ * Dependencies.
  */
+
+var distance;
 
 distance = require('./');
 
 /**
- * Optional module dependencies.
+ * Optional dependencies.
  */
+
+var natural;
 
 try {
     natural = require('natural').DiceCoefficient;
@@ -27,11 +27,15 @@ try {
 }
 
 /**
+ * Fixtures.
+ *
  * The first 1000 words from Letterpress:
  *   https://github.com/atebits/Words
  */
 
-words = Array(11).join([
+var fixtures;
+
+fixtures = Array(11).join([
     'aa',
     'aah',
     'aahed',
@@ -136,18 +140,30 @@ words = Array(11).join([
 ].join('|')).split('|');
 
 /**
+ * Iterate over all fixtures.
+ *
+ * @param {function(current, next)} callback
+ */
+
+function everyFixture(callback) {
+    var prev;
+
+    prev = fixtures[fixtures.length - 1];
+
+    fixtures.forEach(function (fixture) {
+        callback(prev, fixture);
+
+        prev = fixture;
+    });
+}
+
+/**
  * Benchmark this module.
  */
 
 suite('dice-coefficient', function () {
     bench('op/s * 1,000', function () {
-        words.forEach(function (word, index) {
-            var prevWord;
-
-            prevWord = words[index - 1] || words[words.length - 1];
-
-            distance(prevWord, word);
-        });
+        everyFixture(distance);
     });
 });
 
@@ -158,13 +174,7 @@ suite('dice-coefficient', function () {
 if (natural) {
     suite('natural', function () {
         bench('op/s * 1,000', function () {
-            words.forEach(function (word, index) {
-                var prevWord;
-
-                prevWord = words[index - 1] || words[words.length - 1];
-
-                natural(prevWord, word);
-            });
+            everyFixture(natural);
         });
     });
 }
