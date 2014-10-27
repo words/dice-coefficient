@@ -10,7 +10,7 @@
     "coefficient"
   ],
   "dependencies": {
-    "n-gram": "0.0.1"
+    "n-gram": "0.1.0"
   },
   "repository": {
     "type": "git",
