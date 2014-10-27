@@ -2,8 +2,7 @@
 
 var distance,
     words,
-    natural,
-    cljFuzzy;
+    natural;
 
 /**
  * Module dependencies.
@@ -17,7 +16,6 @@ distance = require('./');
 
 try {
     natural = require('natural').DiceCoefficient;
-    cljFuzzy = require('clj-fuzzy').metrics.dice;
 } catch (error) {
     console.log(
         '\u001B[0;31m' +
@@ -166,24 +164,6 @@ if (natural) {
                 prevWord = words[index - 1] || words[words.length - 1];
 
                 natural(prevWord, word);
-            });
-        });
-    });
-}
-
-/**
- * Benchmark `clj-fuzzy`.
- */
-
-if (cljFuzzy) {
-    suite('clj-fuzzy', function () {
-        bench('op/s * 1,000', function () {
-            words.forEach(function (word, index) {
-                var prevWord;
-
-                prevWord = words[index - 1] || words[words.length - 1];
-
-                cljFuzzy(prevWord, word);
             });
         });
     });

@@ -35,7 +35,6 @@ diceCoefficient("night", "nacht") === diceCoefficient("NiGhT", "NACHT"); // true
 ## Other Dice-coefficient implementations
 
 - [NaturalNode/natural](https://github.com/NaturalNode/natural);
-- [Yomguithereal/clj-fuzzy](https://github.com/Yomguithereal/clj-fuzzy) — A bit slow.
 - [minuteman3/node-dice](https://github.com/minuteman3/node-dice) — Does not check bigrams, rather just unigrams. Thus producing different results (e.g., the difference between “nacht” and “night” according to node-dice is 0.6 rather than, [according to the formula](http://en.wikipedia.org/wiki/Dice%27s_coefficient#Formula), 0.25)
 
 ## Benchmark
@@ -54,9 +53,6 @@ On a MacBook Air, it runs about 725,000 op/s, which is more than 4 times faster 
 
            natural
   158 op/s » op/s * 1,000
-
-           clj-fuzzy
-   9 op/s » op/s * 1,000
 ```
 
 ## License

@@ -34,7 +34,7 @@
     "lint-style": "node_modules/.bin/jscs index.js test.js benchmark.js --reporter=inline",
     "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test.js",
     "benchmark": "node_modules/.bin/matcha benchmark.js",
-    "install-benchmark": "npm install clj-fuzzy natural",
+    "install-benchmark": "npm install natural",
     "make": "npm run lint && npm run coverage"
   }
 }
