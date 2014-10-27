@@ -9,7 +9,7 @@ var distance,
  * Module dependencies.
  */
 
-distance = require('..');
+distance = require('./');
 
 /**
  * Optional module dependencies.
