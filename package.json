@@ -12,6 +12,10 @@
   "dependencies": {
     "n-gram": "^0.1.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/dice-coefficient.git"
+  },
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
     "eslint": "^0.9.0",
@@ -19,10 +23,6 @@
     "jscs": "^1.7.0",
     "matcha": "^0.5.0",
     "mocha": "^2.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/dice-coefficient.git"
   },
   "scripts": {
     "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports test.js",
