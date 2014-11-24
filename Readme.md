@@ -44,6 +44,29 @@ On a MacBook Air, it runs about 781,000 op/s, which is more than 7.5 times faste
   102 op/s » op/s * 1,000
 ```
 
+## CLI
+
+Install:
+```sh
+$ npm install dice-coefficient
+```
+
+Usage:
+```
+  Usage: dice-coefficient <string> <string>
+
+  Options:
+
+    -h, --help           output usage information
+    -v, --version        output version number
+
+  Usage:
+
+  # output dice-coefficient
+  $ dice-coefficient night nacht
+  # 0.25
+```
+
 ## License
 
 MIT © [Titus Wormer](http://wooorm.com)

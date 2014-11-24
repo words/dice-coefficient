@@ -7,7 +7,9 @@
     "sorensen",
     "index",
     "dice",
-    "coefficient"
+    "coefficient",
+    "cli",
+    "bin"
   ],
   "dependencies": {
     "wooorm/n-gram": "^0.1.0"
