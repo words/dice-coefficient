@@ -1,4 +1,14 @@
 
+n.n.n / 2014-11-24
+==================
+
+ * Add CLI
+ * Refactor `Readme.md`
+ * Add flat badges to `Readme.md`
+ * Refactor npm script targets in `package.json`
+ * Fix incorrect executive rights on `test.js`
+ * Update matcha
+
 0.1.2 / 2014-10-27
 ==================
 
