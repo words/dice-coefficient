@@ -1,4 +1,4 @@
-# dice-coefficient [![Build Status](https://travis-ci.org/wooorm/dice-coefficient.svg?branch=master)](https://travis-ci.org/wooorm/dice-coefficient) [![Coverage Status](https://img.shields.io/coveralls/wooorm/dice-coefficient.svg)](https://coveralls.io/r/wooorm/dice-coefficient?branch=master)
+# dice-coefficient [![Build Status](https://img.shields.io/travis/wooorm/dice-coefficient.svg?style=flat)](https://travis-ci.org/wooorm/dice-coefficient) [![Coverage Status](https://img.shields.io/coveralls/wooorm/dice-coefficient.svg?style=flat)](https://coveralls.io/r/wooorm/dice-coefficient?branch=master)
 
 The [Sørensen–Dice coefficient](http://en.wikipedia.org/wiki/Sørensen–Dice_coefficient) algorithm in JavaScript.
 
