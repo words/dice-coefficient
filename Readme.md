@@ -48,7 +48,7 @@ On a MacBook Air, it runs about 781,000 op/s, which is more than 7.5 times faste
 
 Install:
 ```sh
-$ npm install dice-coefficient
+$ npm install dice-coefficient --global
 ```
 
 Usage:
