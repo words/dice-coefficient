@@ -5,17 +5,17 @@
 ## Installation
 
 npm:
-```sh
+```bash
 $ npm install dice-coefficient
 ```
 
 Component:
-```sh
+```bash
 $ component install wooorm/dice-coefficient
 ```
 
 Bower:
-```sh
+```bash
 $ bower install dice-coefficient
 ```
 
@@ -32,6 +32,35 @@ diceCoefficient("night", "nacht"); // 0.25
 diceCoefficient("night", "nacht") === diceCoefficient("NiGhT", "NACHT"); // true
 ```
 
+## CLI
+
+Install:
+```bash
+$ npm install --global dice-coefficient
+```
+
+Usage:
+```
+Usage: dice-coefficient [options] <word> <word>
+
+Sørensen–Dice coefficient
+
+Options:
+
+  -h, --help           output usage information
+  -v, --version        output version number
+
+Usage:
+
+# output edit distance
+$ dice-coefficient night nacht
+# 0.25
+
+# output edit distance from stdin
+$ echo "saturday sunday" | dice-coefficient
+# 0.3333333333333333
+```
+
 ## Benchmark
 
 On a MacBook Air, it runs about 781,000 op/s, which is more than 7.5 times faster than natural.
@@ -42,29 +71,6 @@ On a MacBook Air, it runs about 781,000 op/s, which is more than 7.5 times faste
 
            natural
   102 op/s » op/s * 1,000
-```
-
-## CLI
-
-Install:
-```sh
-$ npm install dice-coefficient --global
-```
-
-Usage:
-```
-  Usage: dice-coefficient <string> <string>
-
-  Options:
-
-    -h, --help           output usage information
-    -v, --version        output version number
-
-  Usage:
-
-  # output dice-coefficient
-  $ dice-coefficient night nacht
-  # 0.25
 ```
 
 ## License

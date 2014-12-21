@@ -12,6 +12,14 @@ pack = require('./package.json');
 diceCoefficient = require('./');
 
 /*
+ * Detect if a value is expected to be piped in.
+ */
+
+var expextPipeIn;
+
+expextPipeIn = !process.stdin.isTTY;
+
+/*
  * Arguments.
  */
 
@@ -19,13 +27,25 @@ var argv;
 
 argv = process.argv.slice(2);
 
+/*
+ * Command.
+ */
+
+var command;
+
+command = Object.keys(pack.bin)[0];
+
 /**
  * Help.
+ *
+ * @return {string}
  */
 function help() {
-    console.log([
+    return [
         '',
-        'Usage: dice-coefficient <string> <string>',
+        'Usage: ' + command + ' [options] <word> <word>',
+        '',
+        pack.description,
         '',
         'Options:',
         '',
@@ -34,10 +54,28 @@ function help() {
         '',
         'Usage:',
         '',
-        '# output dice-coefficient',
-        '$ dice-coefficient night nacht',
-        '# 0.25'
-    ].join('\n  ') + '\n');
+        '# output edit distance',
+        '$ ' + command + ' night nacht',
+        '# ' + diceCoefficient('night', 'nacht'),
+        '',
+        '# output edit distance from stdin',
+        '$ echo "saturday sunday" | ' + command,
+        '# ' + diceCoefficient('saturday', 'sunday')
+    ].join('\n  ') + '\n';
+}
+
+/**
+ * Get the edit distance for a list of words.
+ *
+ * @param {Array.<string>} values
+ */
+function getEditDistance(values) {
+    if (values.length === 2) {
+        console.log(diceCoefficient(values[0], values[1]) || 0);
+    } else {
+        process.stderr.write(help());
+        process.exit(1);
+    }
 }
 
 /*
@@ -45,21 +83,23 @@ function help() {
  */
 
 if (
-    argv.indexOf('--help') === 0 ||
-    argv.indexOf('-h') === 0
+    argv.indexOf('--help') !== -1 ||
+    argv.indexOf('-h') !== -1
 ) {
-    help();
+    console.log(help());
 } else if (
-    argv.indexOf('--version') === 0 ||
-    argv.indexOf('-v') === 0
+    argv.indexOf('--version') !== -1 ||
+    argv.indexOf('-v') !== -1
 ) {
     console.log(pack.version);
-} else if (
-    argv.length === 2 &&
-    argv[0] &&
-    argv[1]
-) {
-    console.log(diceCoefficient(argv[0], argv[1]));
+} else if (argv.length) {
+    getEditDistance(argv.join(' ').split(/\s+/g));
+} else if (!expextPipeIn) {
+    getEditDistance([]);
 } else {
-    help();
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+    process.stdin.on('data', function (data) {
+        getEditDistance(data.trim().split(/\s+/g));
+    });
 }
