@@ -2,7 +2,7 @@
 
 var getBigrams;
 
-/**
+/*
  * Module dependencies.
  */
 
@@ -15,7 +15,6 @@ getBigrams = require('n-gram').bigram;
  * @param {*} alternative - Second value.
  * @return {number} Edit distance.
  */
-
 function diceCoefficient(value, alternative) {
     var pairs,
         alternativePairs,
@@ -45,7 +44,7 @@ function diceCoefficient(value, alternative) {
             if (pair === alternativePair) {
                 intersections++;
 
-                /**
+                /*
                  * Make sure this pair never matches again
                  */
 
@@ -58,7 +57,7 @@ function diceCoefficient(value, alternative) {
     return 2 * intersections / (pairs.length + alternativeLength);
 }
 
-/**
+/*
  * Expose `diceCoefficient`.
  */
 

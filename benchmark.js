@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Dependencies.
  */
 
@@ -8,7 +8,7 @@ var distance;
 
 distance = require('./');
 
-/**
+/*
  * Optional dependencies.
  */
 
@@ -26,7 +26,7 @@ try {
     );
 }
 
-/**
+/*
  * Fixtures.
  *
  * The first 1000 words from Letterpress:
@@ -144,7 +144,6 @@ fixtures = Array(11).join([
  *
  * @param {function(current, next)} callback
  */
-
 function everyFixture(callback) {
     var prev;
 
@@ -157,7 +156,7 @@ function everyFixture(callback) {
     });
 }
 
-/**
+/*
  * Benchmark this module.
  */
 
@@ -167,7 +166,7 @@ suite('dice-coefficient', function () {
     });
 });
 
-/**
+/*
  * Benchmark `natural`.
  */
 
