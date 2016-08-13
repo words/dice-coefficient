@@ -1,67 +1,40 @@
 #!/usr/bin/env node
+/**
+ * @author Titus Wormer
+ * @copyright 2014 Titus Wormer
+ * @license MIT
+ * @module dice-coefficient
+ * @fileoverview CLI for `dice-coefficient`.
+ */
+
 'use strict';
 
-/*
- * Dependencies.
- */
+/* Dependencies. */
+var pack = require('./package.json');
+var dice = require('./');
 
-var diceCoefficient,
-    pack;
+/* Arguments. */
+var argv = process.argv.slice(2);
 
-pack = require('./package.json');
-diceCoefficient = require('./');
-
-/*
- * Detect if a value is expected to be piped in.
- */
-
-var expextPipeIn;
-
-expextPipeIn = !process.stdin.isTTY;
-
-/*
- * Arguments.
- */
-
-var argv;
-
-argv = process.argv.slice(2);
-
-/*
- * Command.
- */
-
-var command;
-
-command = Object.keys(pack.bin)[0];
-
-/**
- * Help.
- *
- * @return {string}
- */
-function help() {
-    return [
-        '',
-        'Usage: ' + command + ' [options] <word> <word>',
-        '',
-        pack.description,
-        '',
-        'Options:',
-        '',
-        '  -h, --help           output usage information',
-        '  -v, --version        output version number',
-        '',
-        'Usage:',
-        '',
-        '# output edit distance',
-        '$ ' + command + ' night nacht',
-        '# ' + diceCoefficient('night', 'nacht'),
-        '',
-        '# output edit distance from stdin',
-        '$ echo "saturday sunday" | ' + command,
-        '# ' + diceCoefficient('saturday', 'sunday')
-    ].join('\n  ') + '\n';
+/* Program. */
+if (
+  argv.indexOf('--help') !== -1 ||
+  argv.indexOf('-h') !== -1
+) {
+  console.log(help());
+} else if (
+  argv.indexOf('--version') !== -1 ||
+  argv.indexOf('-v') !== -1
+) {
+  console.log(pack.version);
+} else if (argv.length) {
+  getEditDistance(argv.join(' ').split(/\s+/g));
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+  process.stdin.on('data', function (data) {
+    getEditDistance(data.trim().split(/\s+/g));
+  });
 }
 
 /**
@@ -70,36 +43,39 @@ function help() {
  * @param {Array.<string>} values
  */
 function getEditDistance(values) {
-    if (values.length === 2) {
-        console.log(diceCoefficient(values[0], values[1]) || 0);
-    } else {
-        process.stderr.write(help());
-        process.exit(1);
-    }
+  if (values.length === 2) {
+    console.log(dice(values[0], values[1]) || 0);
+  } else {
+    process.stderr.write(help());
+    process.exit(1);
+  }
 }
 
-/*
- * Program.
+/**
+ * Help.
+ *
+ * @return {string}
  */
-
-if (
-    argv.indexOf('--help') !== -1 ||
-    argv.indexOf('-h') !== -1
-) {
-    console.log(help());
-} else if (
-    argv.indexOf('--version') !== -1 ||
-    argv.indexOf('-v') !== -1
-) {
-    console.log(pack.version);
-} else if (argv.length) {
-    getEditDistance(argv.join(' ').split(/\s+/g));
-} else if (!expextPipeIn) {
-    getEditDistance([]);
-} else {
-    process.stdin.resume();
-    process.stdin.setEncoding('utf8');
-    process.stdin.on('data', function (data) {
-        getEditDistance(data.trim().split(/\s+/g));
-    });
+function help() {
+  return [
+    '',
+    'Usage: ' + pack.name + ' [options] <word> <word>',
+    '',
+    pack.description,
+    '',
+    'Options:',
+    '',
+    '  -h, --help           output usage information',
+    '  -v, --version        output version number',
+    '',
+    'Usage:',
+    '',
+    '# output edit distance',
+    '$ ' + pack.name + ' night nacht',
+    '# ' + dice('night', 'nacht'),
+    '',
+    '# output edit distance from stdin',
+    '$ echo "saturday sunday" | ' + pack.name,
+    '# ' + dice('saturday', 'sunday')
+  ].join('\n  ') + '\n';
 }

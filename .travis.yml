@@ -1,13 +1,27 @@
 language: node_js
-script: npm run-script test-travis
 node_js:
-- '0.10'
 - '0.11'
-after_script: npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls
+- '0.12'
+- '4.0'
+- '5.0'
+- '6.0'
+sudo: false
+after_success:
+- bash <(curl -s https://codecov.io/bash)
 deploy:
-  provider: npm
-  email: tituswormer@gmail.com
-  api_key:
-    secure: jkKCzss0SRy2x0xJYyOGL6JcZ75JU437n3a12M5sitbOU7xKapwx3/p17de2TU30gpODvs4sxWeOqW/Xs3K2R4jUVckzCHaRW5iMWDl/dsugQlYidgZ5LWg30+YN2CeuCF024q2EfQlUFGIuIHNfj3UtJfph3ri6wdAFzkaxaOI=
-  on:
-    repo: wooorm/dice-coefficient
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: ovjuiHxfKMtunkzK2zuTOrKQqaZ+T9l+v7uUmBHVPrymEjf5uLiL848IqPT4VoqpXh8hPV9qwoSL8a8WUvrg93W6WakZZWtC8DjyFs8gCiJNP28dJQpRicOzUM+eoJuMH+fzpLDyQoT7aSSfKuZ9KNBFveDKlTlP8ckx7ISiEv8=
+    on:
+      tags: true
+      node: '5.0'
+  - provider: releases
+    api_key:
+      secure: S67hE2TT6khapwu3SkgxrdXzlpgUmG2Se9P32daJuVRdoimI4noF6/Wpjih3MgEu+VbTo4HWx48RDmkRWeJUwELmdnql3JyOu/CUEnERuYjx7yen3WgDsMlSjk7ddxLQ8EHhLtAV/Eu2Sxu5jiNWLhOAlnSv5v38x6xaK2/e0kg=
+    file:
+      - "dice-coefficient.js"
+      - "dice-coefficient.min.js"
+    on:
+      tags: true
+      node: '6.0'

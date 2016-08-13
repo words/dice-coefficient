@@ -1,64 +1,53 @@
-'use strict';
-
-var getBigrams;
-
-/*
- * Module dependencies.
+/**
+ * @author Titus Wormer
+ * @copyright 2014 Titus Wormer
+ * @license MIT
+ * @module dice-coefficient
+ * @fileoverview Sørensen–Dice coefficient.
  */
 
-getBigrams = require('n-gram').bigram;
+'use strict';
+
+/* Dependencies. */
+var bigrams = require('n-gram').bigram;
+
+/* Expose. */
+module.exports = diceCoefficient;
 
 /**
  * Get the edit-distance according to Dice between two values.
  *
  * @param {*} value - First value.
- * @param {*} alternative - Second value.
+ * @param {*} right - Second value.
  * @return {number} Edit distance.
  */
 function diceCoefficient(value, alternative) {
-    var pairs,
-        alternativePairs,
-        intersections,
-        iterator,
-        length,
-        alternativeLength,
-        alternativeIterator,
-        alternativePair,
-        pair;
+  var left = bigrams(String(value).toLowerCase());
+  var right = bigrams(String(alternative).toLowerCase());
+  var rightLength = right.length;
+  var length = left.length;
+  var index = -1;
+  var intersections = 0;
+  var rightPair;
+  var leftPair;
+  var offset;
 
-    pairs = getBigrams(String(value).toLowerCase());
-    alternativePairs = getBigrams(String(alternative).toLowerCase());
-    intersections = 0;
-    iterator = -1;
-    alternativeLength = alternativePairs.length;
-    length = pairs.length;
+  while (++index < length) {
+    leftPair = left[index];
+    offset = -1;
 
-    while (++iterator < length) {
-        pair = pairs[iterator];
+    while (++offset < rightLength) {
+      rightPair = right[offset];
 
-        alternativeIterator = -1;
+      if (leftPair === rightPair) {
+        intersections++;
 
-        while (++alternativeIterator < alternativeLength) {
-            alternativePair = alternativePairs[alternativeIterator];
-
-            if (pair === alternativePair) {
-                intersections++;
-
-                /*
-                 * Make sure this pair never matches again
-                 */
-
-                alternativePairs[alternativeIterator] = '';
-                break;
-            }
-        }
+        /* Make sure this pair never matches again */
+        right[offset] = '';
+        break;
+      }
     }
+  }
 
-    return 2 * intersections / (pairs.length + alternativeLength);
+  return 2 * intersections / (left.length + rightLength);
 }
-
-/*
- * Expose `diceCoefficient`.
- */
-
-module.exports = diceCoefficient;
