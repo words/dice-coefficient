@@ -12,7 +12,7 @@
     "bin"
   ],
   "dependencies": {
-    "n-gram": "^0.1.2"
+    "n-gram": "^1.0.0"
   },
   "files": [
     "index.js",
