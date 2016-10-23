@@ -12,43 +12,25 @@
 /* Dependencies. */
 var pack = require('./package.json');
 var dice = require('./');
+var neodoc = require('neodoc');
 
-/* Arguments. */
-var argv = process.argv.slice(2);
+var help = _help();
+var args = neodoc.run(help);
 
-/* Program. */
-if (
-  argv.indexOf('--help') !== -1 ||
-  argv.indexOf('-h') !== -1
-) {
-  console.log(help());
-} else if (
-  argv.indexOf('--version') !== -1 ||
-  argv.indexOf('-v') !== -1
-) {
-  console.log(pack.version);
-} else if (argv.length) {
-  getEditDistance(argv.join(' ').split(/\s+/g));
+if (args['<word>']) {
+  console.log(dice(args['<word>'][0], args['<word>'][1]) || 0);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', function (data) {
-    getEditDistance(data.trim().split(/\s+/g));
+    var values = data.trim().split(/\s+/g);
+    if (values.length === 2) {
+      console.log(dice(values[0], values[1]) || 0);
+    } else {
+      process.stderr.write(help);
+      process.exit(1);
+    }
   });
-}
-
-/**
- * Get the edit distance for a list of words.
- *
- * @param {Array.<string>} values
- */
-function getEditDistance(values) {
-  if (values.length === 2) {
-    console.log(dice(values[0], values[1]) || 0);
-  } else {
-    process.stderr.write(help());
-    process.exit(1);
-  }
 }
 
 /**
@@ -56,10 +38,10 @@ function getEditDistance(values) {
  *
  * @return {string}
  */
-function help() {
+function _help() {
   return [
     '',
-    'Usage: ' + pack.name + ' [options] <word> <word>',
+    'Usage: ' + pack.name + ' [options] [<word> <word>]',
     '',
     pack.description,
     '',
@@ -68,7 +50,7 @@ function help() {
     '  -h, --help           output usage information',
     '  -v, --version        output version number',
     '',
-    'Usage:',
+    'Example:',
     '',
     '# output edit distance',
     '$ ' + pack.name + ' night nacht',
