@@ -1,11 +1,9 @@
 language: node_js
 node_js:
 - '4.0'
-- '5.0'
-- '6.0'
+- '7.0'
 sudo: false
-after_success:
-- bash <(curl -s https://codecov.io/bash)
+after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: npm
     email: tituswormer@gmail.com
@@ -13,7 +11,7 @@ deploy:
       secure: ovjuiHxfKMtunkzK2zuTOrKQqaZ+T9l+v7uUmBHVPrymEjf5uLiL848IqPT4VoqpXh8hPV9qwoSL8a8WUvrg93W6WakZZWtC8DjyFs8gCiJNP28dJQpRicOzUM+eoJuMH+fzpLDyQoT7aSSfKuZ9KNBFveDKlTlP8ckx7ISiEv8=
     on:
       tags: true
-      node: '5.0'
+      node: '4.0'
   - provider: releases
     api_key:
       secure: S67hE2TT6khapwu3SkgxrdXzlpgUmG2Se9P32daJuVRdoimI4noF6/Wpjih3MgEu+VbTo4HWx48RDmkRWeJUwELmdnql3JyOu/CUEnERuYjx7yen3WgDsMlSjk7ddxLQ8EHhLtAV/Eu2Sxu5jiNWLhOAlnSv5v38x6xaK2/e0kg=
@@ -22,4 +20,4 @@ deploy:
       - "dice-coefficient.min.js"
     on:
       tags: true
-      node: '6.0'
+      node: '7.0'
