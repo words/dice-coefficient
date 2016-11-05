@@ -11,22 +11,19 @@
     "cli",
     "bin"
   ],
-  "dependencies": {
-    "n-gram": "^1.0.0"
-  },
-  "files": [
-    "index.js",
-    "cli.js"
-  ],
-  "bin": "cli.js",
   "repository": "https://github.com/wooorm/dice-coefficient",
   "bugs": "https://github.com/wooorm/dice-coefficient/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
-  "engines": {
-    "node": ">=0.11.0"
+  "bin": "cli.js",
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "dependencies": {
+    "n-gram": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
