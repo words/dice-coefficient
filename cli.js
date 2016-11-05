@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-/**
- * @author Titus Wormer
- * @copyright 2014 Titus Wormer
- * @license MIT
- * @module dice-coefficient
- * @fileoverview CLI for `dice-coefficient`.
- */
-
 'use strict';
 
 /* Dependencies. */

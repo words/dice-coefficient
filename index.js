@@ -1,11 +1,3 @@
-/**
- * @author Titus Wormer
- * @copyright 2014 Titus Wormer
- * @license MIT
- * @module dice-coefficient
- * @fileoverview Sørensen–Dice coefficient.
- */
-
 'use strict';
 
 /* Dependencies. */
@@ -14,13 +6,7 @@ var bigrams = require('n-gram').bigram;
 /* Expose. */
 module.exports = diceCoefficient;
 
-/**
- * Get the edit-distance according to Dice between two values.
- *
- * @param {*} value - First value.
- * @param {*} right - Second value.
- * @return {number} Edit distance.
- */
+/* Get the edit-distance according to Dice between two values. */
 function diceCoefficient(value, alternative) {
   var left = bigrams(String(value).toLowerCase());
   var right = bigrams(String(alternative).toLowerCase());

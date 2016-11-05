@@ -1,11 +1,3 @@
-/**
- * @author Titus Wormer
- * @copyright 2014 Titus Wormer
- * @license MIT
- * @module dice-coefficient
- * @fileoverview Test suite for `dice-coefficient`.
- */
-
 'use strict';
 
 /* Dependencies. */
