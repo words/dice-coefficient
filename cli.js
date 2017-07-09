@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 
-/* Dependencies. */
 var pack = require('./package.json');
 var dice = require('./');
 
-/* Arguments. */
 var argv = process.argv.slice(2);
 
 /* Program. */
@@ -29,11 +27,7 @@ if (
   });
 }
 
-/**
- * Get the edit distance for a list of words.
- *
- * @param {Array.<string>} values
- */
+/* Get the edit distance for a list of words. */
 function getEditDistance(values) {
   if (values.length === 2) {
     console.log(dice(values[0], values[1]) || 0);
@@ -43,11 +37,6 @@ function getEditDistance(values) {
   }
 }
 
-/**
- * Help.
- *
- * @return {string}
- */
 function help() {
   return [
     '',

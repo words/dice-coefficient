@@ -1,9 +1,7 @@
 'use strict';
 
-/* Dependencies. */
 var bigrams = require('n-gram').bigram;
 
-/* Expose. */
 module.exports = diceCoefficient;
 
 /* Get the edit-distance according to Dice between two values. */
