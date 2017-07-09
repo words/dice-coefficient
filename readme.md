@@ -15,10 +15,10 @@ Use:
 ```js
 var dice = require('dice-coefficient');
 
-dice('abc', 'abc'); // 1
-dice('abc', 'xyz'); // 0
-dice('night', 'nacht'); // 0.25
-dice('night', 'nacht') === dice('NiGhT', 'NACHT'); // true
+dice('abc', 'abc'); //=> 1
+dice('abc', 'xyz'); //=> 0
+dice('night', 'nacht'); //=> 0.25
+dice('night', 'nacht') === dice('NiGhT', 'NACHT'); //=> true
 ```
 
 ## CLI
