@@ -58,13 +58,13 @@ $ echo "saturday sunday" | dice-coefficient
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/dice-coefficient.svg
+[travis-badge]: https://img.shields.io/travis/words/dice-coefficient.svg
 
-[travis]: https://travis-ci.org/wooorm/dice-coefficient
+[travis]: https://travis-ci.org/words/dice-coefficient
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/dice-coefficient.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/words/dice-coefficient.svg
 
-[codecov]: https://codecov.io/github/wooorm/dice-coefficient
+[codecov]: https://codecov.io/github/words/dice-coefficient
 
 [license]: LICENSE
 
