@@ -52,6 +52,17 @@ $ echo "saturday sunday" | dice-coefficient
 # 0.3333333333333333
 ```
 
+*   [`levenshtein-edit-distance`](https://github.com/words/levenshtein-edit-distance)
+    — Levenshtein edit distance
+*   [`lancaster-stemmer`](https://github.com/words/lancaster-stemmer)
+    — Lancaster stemming algorithm
+*   [`double-metaphone`](https://github.com/words/double-metaphone)
+    — Double Metaphone implementation
+*   [`soundex-code`](https://github.com/words/soundex-code)
+    — Fast Soundex implementation
+*   [`syllable`](https://github.com/words/syllable)
+    — Syllable count in an English word
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
