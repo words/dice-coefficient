@@ -6,8 +6,8 @@ module.exports = diceCoefficient;
 
 /* Get the edit-distance according to Dice between two values. */
 function diceCoefficient(value, alternative) {
-  var left = bigrams(String(value).toLowerCase());
-  var right = bigrams(String(alternative).toLowerCase());
+  var left = bigrams(String(value).toLowerCase()).sort();
+  var right = bigrams(String(alternative).toLowerCase()).sort();
   var rightLength = right.length;
   var length = left.length;
   var index = -1;
@@ -15,19 +15,21 @@ function diceCoefficient(value, alternative) {
   var rightPair;
   var leftPair;
   var offset;
+  var rightIndex = 0;
 
   while (++index < length) {
     leftPair = left[index];
-    offset = -1;
+    offset = rightIndex - 1;
 
     while (++offset < rightLength) {
       rightPair = right[offset];
 
       if (leftPair === rightPair) {
         intersections++;
-
-        /* Make sure this pair never matches again */
-        right[offset] = '';
+        rightIndex = offset + 1;
+        break;
+      } else if (leftPair < rightPair) {
+        rightIndex = offset;
         break;
       }
     }
