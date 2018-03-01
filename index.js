@@ -27,9 +27,6 @@ function diceCoefficient(value, alternative) {
       if (leftPair === rightPair) {
         intersections++;
         rightIndex = offset + 1;
-
-        /* Make sure this pair never matches again */
-        right[offset] = '';
         break;
       } else if (leftPair < rightPair) {
         rightIndex = offset;
