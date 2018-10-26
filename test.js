@@ -7,6 +7,10 @@ var version = require('./package').version;
 var dice = require('./');
 
 test('api', function (t) {
+  t.equal(dice('a', 'a'), 1, 'a / a');
+  t.equal(dice('a', 'b'), 0, 'a / b');
+  t.equal(dice('a', 'A'), 1, 'a / A');
+  t.equal(dice('a', 'B'), 0, 'a / B');
   t.equal(dice('abc', 'abc'), 1, 'abc / abc');
   t.equal(dice('abc', 'xyz'), 0, 'abc / xyz');
   t.equal(dice('night', 'nacht'), 0.25, 'night / nacht');

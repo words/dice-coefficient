@@ -1,6 +1,6 @@
 {
   "name": "dice-coefficient",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sørensen–Dice coefficient",
   "license": "MIT",
   "keywords": [
@@ -9,14 +9,18 @@
     "dice",
     "coefficient",
     "cli",
-    "bin"
+    "bin",
+    "string",
+    "comparison",
+    "difference"
   ],
   "homepage": "https://words.github.io/dice-coefficient/",
   "repository": "words/dice-coefficient",
   "bugs": "https://github.com/words/dice-coefficient/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Ben Meyrick <bameyrick@gmail.com>"
   ],
   "bin": "cli.js",
   "files": [

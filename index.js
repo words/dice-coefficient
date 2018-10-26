@@ -6,8 +6,8 @@ module.exports = diceCoefficient;
 
 /* Get the edit-distance according to Dice between two values. */
 function diceCoefficient(value, alternative) {
-  var left = bigrams(String(value).toLowerCase());
-  var right = bigrams(String(alternative).toLowerCase());
+  var left = value.length === 1 ? [value.toLowerCase()] : bigrams(String(value).toLowerCase());
+  var right = alternative.length === 1 ? [alternative.toLowerCase()] : bigrams(String(alternative).toLowerCase());
   var rightLength = right.length;
   var length = left.length;
   var index = -1;
