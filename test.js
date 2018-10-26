@@ -4,7 +4,7 @@ var PassThrough = require('stream').PassThrough;
 var test = require('tape');
 var execa = require('execa');
 var version = require('./package').version;
-var dice = require('./');
+var dice = require('.');
 
 test('api', function (t) {
   t.equal(dice('a', 'a'), 1, 'a / a');
@@ -38,12 +38,12 @@ test('cli', function (t) {
     input.end('xyz');
   });
 
-  execa.stderr('./cli.js', ['abc']).catch(function (err) {
-    t.equal(err.code, 1, 'should exit with `1` on too few arguments');
+  execa.stderr('./cli.js', ['abc']).catch(function (error) {
+    t.equal(error.code, 1, 'should exit with `1` on too few arguments');
   });
 
-  execa.stderr('./cli.js', ['abc', 'abc', 'abc']).catch(function (err) {
-    t.equal(err.code, 1, 'should exit with `1` on too many arguments');
+  execa.stderr('./cli.js', ['abc', 'abc', 'abc']).catch(function (error) {
+    t.equal(error.code, 1, 'should exit with `1` on too many arguments');
   });
 
   ['-h', '--help'].forEach(function (flag) {

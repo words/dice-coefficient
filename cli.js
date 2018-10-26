@@ -2,7 +2,7 @@
 'use strict';
 
 var pack = require('./package.json');
-var dice = require('./');
+var dice = require('.');
 
 var argv = process.argv.slice(2);
 
