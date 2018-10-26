@@ -1,39 +1,39 @@
-'use strict';
+'use strict'
 
-var bigrams = require('n-gram').bigram;
+var bigrams = require('n-gram').bigram
 
-module.exports = diceCoefficient;
+module.exports = diceCoefficient
 
-/* Get the edit-distance according to Dice between two values. */
+// Get the edit-distance according to Dice between two values.
 function diceCoefficient(value, alternative) {
-  var normalValue = String(value).toLowerCase();
-  var normalAlternative = String(alternative).toLowerCase();
-  var left = value.length === 1 ? [normalValue] : bigrams(normalValue);
-  var right = alternative.length === 1 ? [normalAlternative] : bigrams(normalAlternative);
-  var rightLength = right.length;
-  var length = left.length;
-  var index = -1;
-  var intersections = 0;
-  var rightPair;
-  var leftPair;
-  var offset;
+  var val = String(value).toLowerCase()
+  var alt = String(alternative).toLowerCase()
+  var left = val.length === 1 ? [val] : bigrams(val)
+  var right = alt.length === 1 ? [alt] : bigrams(alt)
+  var leftLength = left.length
+  var rightLength = right.length
+  var index = -1
+  var intersections = 0
+  var leftPair
+  var rightPair
+  var offset
 
-  while (++index < length) {
-    leftPair = left[index];
-    offset = -1;
+  while (++index < leftLength) {
+    leftPair = left[index]
+    offset = -1
 
     while (++offset < rightLength) {
-      rightPair = right[offset];
+      rightPair = right[offset]
 
       if (leftPair === rightPair) {
-        intersections++;
+        intersections++
 
         /* Make sure this pair never matches again */
-        right[offset] = '';
-        break;
+        right[offset] = ''
+        break
       }
     }
   }
 
-  return 2 * intersections / (left.length + rightLength);
+  return (2 * intersections) / (leftLength + rightLength)
 }
