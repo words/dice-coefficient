@@ -77,7 +77,7 @@ $ echo "saturday sunday" | dice-coefficient
 
 [codecov]: https://codecov.io/github/words/dice-coefficient
 
-[license]: LICENSE
+[license]: license
 
 [author]: http://wooorm.com
 
