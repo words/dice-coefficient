@@ -6,7 +6,6 @@ var dice = require('.')
 
 var argv = process.argv.slice(2)
 
-/* Program. */
 if (argv.indexOf('--help') !== -1 || argv.indexOf('-h') !== -1) {
   console.log(help())
 } else if (argv.indexOf('--version') !== -1 || argv.indexOf('-v') !== -1) {
@@ -21,7 +20,6 @@ if (argv.indexOf('--help') !== -1 || argv.indexOf('-h') !== -1) {
   getEditDistance(argv.join(' ').split(/\s+/g))
 }
 
-/* Get the edit distance for a list of words. */
 function getEditDistance(values) {
   if (values.length === 2) {
     console.log(dice(values[0], values[1]) || 0)
