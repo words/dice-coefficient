@@ -7,15 +7,15 @@
 
 [Sørensen–Dice coefficient][wiki].
 
-## API
+## Install
 
-Install:
+[npm][]:
 
-```bash
+```sh
 npm install dice-coefficient
 ```
 
-Use:
+## API
 
 ```js
 var dice = require('dice-coefficient')
@@ -27,14 +27,6 @@ dice('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
 ```
 
 ## CLI
-
-Install:
-
-```sh
-npm install -g dice-coefficient
-```
-
-Use:
 
 ```txt
 Usage: dice-coefficient [options] <word> <word>
@@ -89,6 +81,8 @@ $ echo "saturday sunday" | dice-coefficient
 [size-badge]: https://img.shields.io/bundlephobia/minzip/dice-coefficient.svg
 
 [size]: https://bundlephobia.com/result?p=dice-coefficient
+
+[npm]: https://docs.npmjs.com/cli/install
 
 [license]: license
 
