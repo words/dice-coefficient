@@ -49,6 +49,8 @@ $ echo "saturday sunday" | dice-coefficient
 # 0.3333333333333333
 ```
 
+## Related
+
 *   [`levenshtein-edit-distance`](https://github.com/words/levenshtein-edit-distance)
     — Levenshtein edit distance
 *   [`lancaster-stemmer`](https://github.com/words/lancaster-stemmer)
