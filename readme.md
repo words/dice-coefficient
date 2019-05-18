@@ -79,6 +79,6 @@ $ echo "saturday sunday" | dice-coefficient
 
 [license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
 
-[wiki]: http://en.wikipedia.org/wiki/Sørensen–Dice_coefficient
+[wiki]: https://en.wikipedia.org/wiki/Sørensen–Dice_coefficient
