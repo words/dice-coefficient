@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - lts/boron
+  - lts/dubnium
   - node
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
@@ -9,7 +9,7 @@ deploy:
   api_key:
     secure: S67hE2TT6khapwu3SkgxrdXzlpgUmG2Se9P32daJuVRdoimI4noF6/Wpjih3MgEu+VbTo4HWx48RDmkRWeJUwELmdnql3JyOu/CUEnERuYjx7yen3WgDsMlSjk7ddxLQ8EHhLtAV/Eu2Sxu5jiNWLhOAlnSv5v38x6xaK2/e0kg=
   file:
-    - "dice-coefficient.js"
-    - "dice-coefficient.min.js"
+    - 'dice-coefficient.js'
+    - 'dice-coefficient.min.js'
   on:
     tags: true
