@@ -1,8 +1,8 @@
 'use strict'
 
+var exec = require('child_process').exec
 var PassThrough = require('stream').PassThrough
 var test = require('tape')
-var execa = require('execa')
 var version = require('./package').version
 var dice = require('.')
 
@@ -20,43 +20,58 @@ test('api', function(t) {
 
 test('cli', function(t) {
   var input = new PassThrough()
-  var help = ['-h', '--help']
+  var helps = ['-h', '--help']
   var versions = ['-v', '--version']
 
-  t.plan(8)
+  t.plan(9)
 
-  execa.stdout('./cli.js', ['abc', 'abc']).then(function(result) {
-    t.equal(result, '1', 'arguments')
+  exec('./cli.js abc', function(err, stdout, stderr) {
+    t.deepEqual(
+      [err.code, stdout, /Usage: dice-coefficient/.test(stderr)],
+      [1, '', true],
+      'not enough arguments'
+    )
   })
 
-  execa.stdout('./cli.js', {input: input}).then(function(result) {
-    t.equal(result, '0', 'stdin')
+  exec('./cli.js abc abc abc', function(err, stdout, stderr) {
+    t.deepEqual(
+      [err.code, stdout, /Usage: dice-coefficient/.test(stderr)],
+      [1, '', true],
+      'too many arguments'
+    )
   })
 
+  exec('./cli.js abc abc', function(err, stdout, stderr) {
+    t.deepEqual([err, stdout, stderr], [null, '1\n', ''], 'same')
+  })
+
+  exec('./cli.js abc def', function(err, stdout, stderr) {
+    t.deepEqual([err, stdout, stderr], [null, '0\n', ''], 'not same')
+  })
+
+  var subprocess = exec('./cli.js', function(err, stdout, stderr) {
+    t.deepEqual([err, stdout, stderr], [null, '0\n', ''], 'stdin')
+  })
+
+  input.pipe(subprocess.stdin)
   input.write('abc')
-  input.write(' ')
-
   setImmediate(function() {
-    input.end('xyz')
+    input.end(' def')
   })
 
-  execa.stderr('./cli.js', ['abc']).catch(function(error) {
-    t.equal(error.code, 1, 'should exit with `1` on too few arguments')
-  })
-
-  execa.stderr('./cli.js', ['abc', 'abc', 'abc']).catch(function(error) {
-    t.equal(error.code, 1, 'should exit with `1` on too many arguments')
-  })
-
-  help.forEach(function(flag) {
-    execa.stdout('./cli.js', [flag]).then(function(result) {
-      t.ok(/\s+Usage: dice-coefficient/.test(result), flag)
+  helps.forEach(function(flag) {
+    exec('./cli.js ' + flag, function(err, stdout, stderr) {
+      t.deepEqual(
+        [err, /\sUsage: dice-coefficient/.test(stdout), stderr],
+        [null, true, ''],
+        flag
+      )
     })
   })
 
   versions.forEach(function(flag) {
-    execa.stdout('./cli.js', [flag]).then(function(result) {
-      t.equal(result, version, flag)
+    exec('./cli.js ' + flag, function(err, stdout, stderr) {
+      t.deepEqual([err, stdout, stderr], [null, version + '\n', ''], flag)
     })
   })
 })
