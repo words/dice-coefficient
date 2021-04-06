@@ -1,6 +1,12 @@
 import {bigram} from 'n-gram'
 
-// Get the edit-distance according to Dice between two values.
+/**
+ * Get the edit-distance according to Dice between two values.
+ *
+ * @param {string} value
+ * @param {string} alternative
+ * @returns {number}
+ */
 export function diceCoefficient(value, alternative) {
   var value_ = String(value).toLowerCase()
   var alt = String(alternative).toLowerCase()
@@ -8,8 +14,11 @@ export function diceCoefficient(value, alternative) {
   var right = alt.length === 1 ? [alt] : bigram(alt)
   var index = -1
   var intersections = 0
+  /** @type {string} */
   var leftPair
+  /** @type {string} */
   var rightPair
+  /** @type {number} */
   var offset
 
   while (++index < left.length) {

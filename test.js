@@ -5,6 +5,7 @@ import {PassThrough} from 'stream'
 import {diceCoefficient as m} from './index.js'
 import test from 'tape'
 
+/** @type {Object.<string, unknown>} */
 var pack = JSON.parse(
   String(fs.readFileSync(new URL('./package.json', import.meta.url)))
 )

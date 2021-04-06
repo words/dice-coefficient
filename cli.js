@@ -3,6 +3,7 @@ import fs from 'fs'
 import {URL} from 'url'
 import {diceCoefficient} from './index.js'
 
+/** @type {Object.<string, unknown>} */
 var pack = JSON.parse(
   String(fs.readFileSync(new URL('./package.json', import.meta.url)))
 )
@@ -17,12 +18,15 @@ if (argv.includes('--help') || argv.includes('-h')) {
   process.stdin.resume()
   process.stdin.setEncoding('utf8')
   process.stdin.on('data', function (data) {
-    getEditDistance(data.trim().split(/\s+/g))
+    getEditDistance(String(data).trim().split(/\s+/g))
   })
 } else {
   getEditDistance(argv.join(' ').split(/\s+/g))
 }
 
+/**
+ * @param {Array.<string>} values
+ */
 function getEditDistance(values) {
   if (values.length === 2) {
     console.log(diceCoefficient(values[0], values[1]) || 0)
