@@ -1,8 +1,6 @@
-'use strict'
-
 /* eslint-env browser */
 
-var diceCoefficient = require('dice-coefficient')
+import {diceCoefficient} from 'dice-coefficient'
 
 var $inputs = document.querySelectorAll('input')
 var $input = $inputs[0]
