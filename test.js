@@ -1,20 +1,23 @@
-'use strict'
+import {exec} from 'child_process'
+import fs from 'fs'
+import {URL} from 'url'
+import {PassThrough} from 'stream'
+import {diceCoefficient as m} from './index.js'
+import test from 'tape'
 
-var exec = require('child_process').exec
-var PassThrough = require('stream').PassThrough
-var test = require('tape')
-var version = require('./package').version
-var dice = require('.')
+var pack = JSON.parse(
+  String(fs.readFileSync(new URL('./package.json', import.meta.url)))
+)
 
 test('api', function (t) {
-  t.equal(dice('a', 'a'), 1, 'a / a')
-  t.equal(dice('a', 'b'), 0, 'a / b')
-  t.equal(dice('a', 'A'), 1, 'a / A')
-  t.equal(dice('a', 'B'), 0, 'a / B')
-  t.equal(dice('abc', 'abc'), 1, 'abc / abc')
-  t.equal(dice('abc', 'xyz'), 0, 'abc / xyz')
-  t.equal(dice('night', 'nacht'), 0.25, 'night / nacht')
-  t.equal(dice('NIGHT', 'NaChT'), 0.25, 'case insensitive')
+  t.equal(m('a', 'a'), 1, 'a / a')
+  t.equal(m('a', 'b'), 0, 'a / b')
+  t.equal(m('a', 'A'), 1, 'a / A')
+  t.equal(m('a', 'B'), 0, 'a / B')
+  t.equal(m('abc', 'abc'), 1, 'abc / abc')
+  t.equal(m('abc', 'xyz'), 0, 'abc / xyz')
+  t.equal(m('night', 'nacht'), 0.25, 'night / nacht')
+  t.equal(m('NIGHT', 'NaChT'), 0.25, 'case insensitive')
   t.end()
 })
 
@@ -71,7 +74,11 @@ test('cli', function (t) {
 
   for (const flag of versions) {
     exec('./cli.js ' + flag, function (error, stdout, stderr) {
-      t.deepEqual([error, stdout, stderr], [null, version + '\n', ''], flag)
+      t.deepEqual(
+        [error, stdout, stderr],
+        [null, pack.version + '\n', ''],
+        flag
+      )
     })
   }
 })

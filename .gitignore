@@ -1,8 +1,5 @@
 .DS_Store
 *.log
-.nyc_output/
 coverage/
 node_modules/
-dice-coefficient.js
-dice-coefficient.min.js
 yarn.lock

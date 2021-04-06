@@ -1,14 +1,17 @@
 #!/usr/bin/env node
-'use strict'
+import fs from 'fs'
+import {URL} from 'url'
+import {diceCoefficient} from './index.js'
 
-var pack = require('./package.json')
-var dice = require('.')
+var pack = JSON.parse(
+  String(fs.readFileSync(new URL('./package.json', import.meta.url)))
+)
 
 var argv = process.argv.slice(2)
 
-if (argv.indexOf('--help') !== -1 || argv.indexOf('-h') !== -1) {
+if (argv.includes('--help') || argv.includes('-h')) {
   console.log(help())
-} else if (argv.indexOf('--version') !== -1 || argv.indexOf('-v') !== -1) {
+} else if (argv.includes('--version') || argv.includes('-v')) {
   console.log(pack.version)
 } else if (argv.length === 0) {
   process.stdin.resume()
@@ -22,7 +25,7 @@ if (argv.indexOf('--help') !== -1 || argv.indexOf('-h') !== -1) {
 
 function getEditDistance(values) {
   if (values.length === 2) {
-    console.log(dice(values[0], values[1]) || 0)
+    console.log(diceCoefficient(values[0], values[1]) || 0)
   } else {
     process.stderr.write(help())
     process.exit(1)
@@ -46,11 +49,11 @@ function help() {
       '',
       '  # output edit distance',
       '  $ ' + pack.name + ' night nacht',
-      '  # ' + dice('night', 'nacht'),
+      '  # ' + diceCoefficient('night', 'nacht'),
       '',
       '  # output edit distance from stdin',
       '  $ echo "saturday sunday" | ' + pack.name,
-      '  # ' + dice('saturday', 'sunday')
+      '  # ' + diceCoefficient('saturday', 'sunday')
     ].join('\n') + '\n'
   )
 }

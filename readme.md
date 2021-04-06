@@ -9,6 +9,9 @@
 
 ## Install
 
+This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
+instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -17,13 +20,16 @@ npm install dice-coefficient
 
 ## API
 
-```js
-var dice = require('dice-coefficient')
+This package exports the following identifiers: `diceCoefficient`.
+There is no default export.
 
-dice('abc', 'abc') // => 1
-dice('abc', 'xyz') // => 0
-dice('night', 'nacht') // => 0.25
-dice('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
+```js
+import {diceCoefficient} from 'dice-coefficient'
+
+diceCoefficient('abc', 'abc') // => 1
+diceCoefficient('abc', 'xyz') // => 0
+diceCoefficient('night', 'nacht') // => 0.25
+diceCoefficient('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
 ```
 
 ## CLI

@@ -1,28 +1,22 @@
-'use strict'
-
-var bigrams = require('n-gram').bigram
-
-module.exports = diceCoefficient
+import {bigram} from 'n-gram'
 
 // Get the edit-distance according to Dice between two values.
-function diceCoefficient(value, alternative) {
+export function diceCoefficient(value, alternative) {
   var value_ = String(value).toLowerCase()
   var alt = String(alternative).toLowerCase()
-  var left = value_.length === 1 ? [value_] : bigrams(value_)
-  var right = alt.length === 1 ? [alt] : bigrams(alt)
-  var leftLength = left.length
-  var rightLength = right.length
+  var left = value_.length === 1 ? [value_] : bigram(value_)
+  var right = alt.length === 1 ? [alt] : bigram(alt)
   var index = -1
   var intersections = 0
   var leftPair
   var rightPair
   var offset
 
-  while (++index < leftLength) {
+  while (++index < left.length) {
     leftPair = left[index]
     offset = -1
 
-    while (++offset < rightLength) {
+    while (++offset < right.length) {
       rightPair = right[offset]
 
       if (leftPair === rightPair) {
@@ -35,5 +29,5 @@ function diceCoefficient(value, alternative) {
     }
   }
 
-  return (2 * intersections) / (leftLength + rightLength)
+  return (2 * intersections) / (left.length + right.length)
 }
