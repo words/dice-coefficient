@@ -6,9 +6,9 @@ module.exports = diceCoefficient
 
 // Get the edit-distance according to Dice between two values.
 function diceCoefficient(value, alternative) {
-  var val = String(value).toLowerCase()
+  var value_ = String(value).toLowerCase()
   var alt = String(alternative).toLowerCase()
-  var left = val.length === 1 ? [val] : bigrams(val)
+  var left = value_.length === 1 ? [value_] : bigrams(value_)
   var right = alt.length === 1 ? [alt] : bigrams(alt)
   var leftLength = left.length
   var rightLength = right.length

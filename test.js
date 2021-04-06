@@ -6,7 +6,7 @@ var test = require('tape')
 var version = require('./package').version
 var dice = require('.')
 
-test('api', function(t) {
+test('api', function (t) {
   t.equal(dice('a', 'a'), 1, 'a / a')
   t.equal(dice('a', 'b'), 0, 'a / b')
   t.equal(dice('a', 'A'), 1, 'a / A')
@@ -18,60 +18,60 @@ test('api', function(t) {
   t.end()
 })
 
-test('cli', function(t) {
+test('cli', function (t) {
   var input = new PassThrough()
   var helps = ['-h', '--help']
   var versions = ['-v', '--version']
 
   t.plan(9)
 
-  exec('./cli.js abc', function(err, stdout, stderr) {
+  exec('./cli.js abc', function (error, stdout, stderr) {
     t.deepEqual(
-      [err.code, stdout, /Usage: dice-coefficient/.test(stderr)],
+      [error.code, stdout, /Usage: dice-coefficient/.test(stderr)],
       [1, '', true],
       'not enough arguments'
     )
   })
 
-  exec('./cli.js abc abc abc', function(err, stdout, stderr) {
+  exec('./cli.js abc abc abc', function (error, stdout, stderr) {
     t.deepEqual(
-      [err.code, stdout, /Usage: dice-coefficient/.test(stderr)],
+      [error.code, stdout, /Usage: dice-coefficient/.test(stderr)],
       [1, '', true],
       'too many arguments'
     )
   })
 
-  exec('./cli.js abc abc', function(err, stdout, stderr) {
-    t.deepEqual([err, stdout, stderr], [null, '1\n', ''], 'same')
+  exec('./cli.js abc abc', function (error, stdout, stderr) {
+    t.deepEqual([error, stdout, stderr], [null, '1\n', ''], 'same')
   })
 
-  exec('./cli.js abc def', function(err, stdout, stderr) {
-    t.deepEqual([err, stdout, stderr], [null, '0\n', ''], 'not same')
+  exec('./cli.js abc def', function (error, stdout, stderr) {
+    t.deepEqual([error, stdout, stderr], [null, '0\n', ''], 'not same')
   })
 
-  var subprocess = exec('./cli.js', function(err, stdout, stderr) {
-    t.deepEqual([err, stdout, stderr], [null, '0\n', ''], 'stdin')
+  var subprocess = exec('./cli.js', function (error, stdout, stderr) {
+    t.deepEqual([error, stdout, stderr], [null, '0\n', ''], 'stdin')
   })
 
   input.pipe(subprocess.stdin)
   input.write('abc')
-  setImmediate(function() {
+  setImmediate(function () {
     input.end(' def')
   })
 
-  helps.forEach(function(flag) {
-    exec('./cli.js ' + flag, function(err, stdout, stderr) {
+  for (const flag of helps) {
+    exec('./cli.js ' + flag, function (error, stdout, stderr) {
       t.deepEqual(
-        [err, /\sUsage: dice-coefficient/.test(stdout), stderr],
+        [error, /\sUsage: dice-coefficient/.test(stdout), stderr],
         [null, true, ''],
         flag
       )
     })
-  })
+  }
 
-  versions.forEach(function(flag) {
-    exec('./cli.js ' + flag, function(err, stdout, stderr) {
-      t.deepEqual([err, stdout, stderr], [null, version + '\n', ''], flag)
+  for (const flag of versions) {
+    exec('./cli.js ' + flag, function (error, stdout, stderr) {
+      t.deepEqual([error, stdout, stderr], [null, version + '\n', ''], flag)
     })
-  })
+  }
 })

@@ -13,7 +13,7 @@ if (argv.indexOf('--help') !== -1 || argv.indexOf('-h') !== -1) {
 } else if (argv.length === 0) {
   process.stdin.resume()
   process.stdin.setEncoding('utf8')
-  process.stdin.on('data', function(data) {
+  process.stdin.on('data', function (data) {
     getEditDistance(data.trim().split(/\s+/g))
   })
 } else {
