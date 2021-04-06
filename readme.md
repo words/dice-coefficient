@@ -68,9 +68,9 @@ $ echo "saturday sunday" | dice-coefficient
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/words/dice-coefficient.svg
+[build-badge]: https://github.com/words/dice-coefficient/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/words/dice-coefficient
+[build]: https://github.com/words/dice-coefficient/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/words/dice-coefficient.svg
 
