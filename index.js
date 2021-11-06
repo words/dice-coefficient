@@ -11,12 +11,14 @@ export function diceCoefficient(value, alternative) {
   var value_ = String(value).toLowerCase()
   var alt = String(alternative).toLowerCase()
   var left = Array.isArray(value)
-    ? value
+    ? value.map((valueBigram) => String(valueBigram).toLowerCase())
     : value_.length === 1
     ? [value_]
     : bigram(value_)
   var right = Array.isArray(alternative)
-    ? alternative
+    ? alternative.map((alternativeBigram) =>
+        String(alternativeBigram).toLowerCase()
+      )
     : alt.length === 1
     ? [alt]
     : bigram(alt)

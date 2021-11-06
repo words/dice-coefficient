@@ -17,6 +17,7 @@ test('api', function (t) {
   t.equal(m('a', 'B'), 0, 'a / B')
   t.equal(m('abc', 'abc'), 1, 'abc / abc')
   t.equal(m(['ab', 'bc'], ['ab', 'bc']), 1, '[ab, bc] / [ab, bc]')
+  t.equal(m(['AB', 'BC'], ['ab', 'bc']), 1, '[AB, BC] / [ab, bc]')
   t.equal(m('abc', 'xyz'), 0, 'abc / xyz')
   t.equal(m(['ab', 'bc'], ['xy', 'yz']), 0, '[ab, bc] / [xy, yz]')
   t.equal(m('night', 'nacht'), 0.25, 'night / nacht')
