@@ -30,6 +30,18 @@ diceCoefficient('abc', 'abc') // => 1
 diceCoefficient('abc', 'xyz') // => 0
 diceCoefficient('night', 'nacht') // => 0.25
 diceCoefficient('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
+
+// bigrams may also be passed as input arguments for improved efficiency
+// when analyzing the same strings repeatedly, for example, when
+// comparing the text of each file in a directory with the text of
+// each file in another directory.
+
+import {bigram} from 'n-gram'
+
+const bigramifiedString1 = bigram('abc') // ['ab', 'bc']
+const bigramifiedString2 = bigram('xyz') // ['xy', 'yz']
+
+diceCoefficient(bigramifiedString1, bigramifiedString2) // => 0
 ```
 
 ## CLI
