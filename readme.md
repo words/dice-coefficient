@@ -30,16 +30,22 @@ diceCoefficient('abc', 'abc') // => 1
 diceCoefficient('abc', 'xyz') // => 0
 diceCoefficient('night', 'nacht') // => 0.25
 diceCoefficient('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
+```
 
-// bigrams may also be passed as input arguments for improved efficiency
-// when analyzing the same strings repeatedly, for example, when
-// comparing the text of each file in a directory with the text of
-// each file in another directory.
+Bigrams (arrays of 2-character-length strings) may also be passed as input arguments for better efficiency when processing the same strings repeatedly.
 
+```js
+diceCoefficient(['ab', 'bc'], ['xy', 'yz']) // => 0
+diceCoefficient(['ab', 'bc'], ['ab', 'bc']) // => 1
+diceCoefficient(['ab', 'bc'], ['AB', 'BC']) // => 1
+```
+
+See [n-gram](https://github.com/words/n-gram) for a helpful utility function for generating bigrams.
+
+```js
 import {bigram} from 'n-gram'
-
-const bigramifiedString1 = bigram('abc') // ['ab', 'bc']
-const bigramifiedString2 = bigram('xyz') // ['xy', 'yz']
+const bigramifiedString1 = bigram('abc') // => ['ab', 'bc']
+const bigramifiedString2 = bigram('xyz') // => ['xy', 'yz']
 
 diceCoefficient(bigramifiedString1, bigramifiedString2) // => 0
 ```
