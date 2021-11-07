@@ -8,20 +8,29 @@ import {bigram} from 'n-gram'
  * @returns {number}
  */
 export function diceCoefficient(value, alternative) {
-  var value_ = String(value).toLowerCase()
-  var alt = String(alternative).toLowerCase()
-  var left = Array.isArray(value)
-    ? value.map((valueBigram) => String(valueBigram).toLowerCase())
-    : value_.length === 1
-    ? [value_]
-    : bigram(value_)
-  var right = Array.isArray(alternative)
-    ? alternative.map((alternativeBigram) =>
-        String(alternativeBigram).toLowerCase()
-      )
-    : alt.length === 1
-    ? [alt]
-    : bigram(alt)
+  /** @type {string} */
+  var value_
+  /** @type {string} */
+  var alt
+  /** @type {string[]} */
+  var left
+  /** @type {string[]} */
+  var right
+
+  if (Array.isArray(value)) {
+    left = value.map((valueBigram) => String(valueBigram).toLowerCase())
+  } else {
+    value_ = String(value).toLowerCase()
+    left = value_.length === 1 ? [value_] : bigram(value_)
+  }
+
+  if (Array.isArray(alternative)) {
+    right = alternative.map((altBigram) => String(altBigram).toLowerCase())
+  } else {
+    alt = String(alternative).toLowerCase()
+    right = alt.length === 1 ? [alt] : bigram(alt)
+  }
+
   var index = -1
   var intersections = 0
   /** @type {string} */
