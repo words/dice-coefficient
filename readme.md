@@ -41,7 +41,7 @@ diceCoefficient(['ab', 'bc'], ['ab', 'bc']) // => 1
 diceCoefficient(['ab', 'bc'], ['AB', 'BC']) // => 1
 ```
 
-See [n-gram](https://github.com/words/n-gram) for a helpful utility function for generating bigrams.
+See [`n-gram`](https://github.com/words/n-gram) for generating bigrams.
 
 ```js
 import {bigram} from 'n-gram'
