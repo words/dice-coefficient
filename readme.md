@@ -45,10 +45,11 @@ See [`n-gram`](https://github.com/words/n-gram) for generating bigrams.
 
 ```js
 import {bigram} from 'n-gram'
-const bigramifiedString1 = bigram('abc') // => ['ab', 'bc']
-const bigramifiedString2 = bigram('xyz') // => ['xy', 'yz']
 
-diceCoefficient(bigramifiedString1, bigramifiedString2) // => 0
+const abc = bigram('abc') // => ['ab', 'bc']
+const xyz = bigram('xyz') // => ['xy', 'yz']
+
+diceCoefficient(abc, xyz) // => 0
 ```
 
 ## CLI
