@@ -32,7 +32,8 @@ diceCoefficient('night', 'nacht') // => 0.25
 diceCoefficient('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
 ```
 
-Bigrams (arrays of 2-character-length strings) may also be passed as input arguments for better efficiency when processing the same strings repeatedly.
+Instead of strings you can also pass lists of bigrams.
+This can improve performance when processing the same strings repeatedly.
 
 ```js
 diceCoefficient(['ab', 'bc'], ['xy', 'yz']) // => 0
