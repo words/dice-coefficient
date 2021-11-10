@@ -32,6 +32,26 @@ diceCoefficient('night', 'nacht') // => 0.25
 diceCoefficient('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
 ```
 
+Instead of strings you can also pass lists of bigrams.
+This can improve performance when processing the same strings repeatedly.
+
+```js
+diceCoefficient(['ab', 'bc'], ['xy', 'yz']) // => 0
+diceCoefficient(['ab', 'bc'], ['ab', 'bc']) // => 1
+diceCoefficient(['ab', 'bc'], ['AB', 'BC']) // => 1
+```
+
+See [`n-gram`](https://github.com/words/n-gram) for generating bigrams.
+
+```js
+import {bigram} from 'n-gram'
+
+const abc = bigram('abc') // => ['ab', 'bc']
+const xyz = bigram('xyz') // => ['xy', 'yz']
+
+diceCoefficient(abc, xyz) // => 0
+```
+
 ## CLI
 
 ```txt

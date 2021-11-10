@@ -3,15 +3,34 @@ import {bigram} from 'n-gram'
 /**
  * Get the edit-distance according to Dice between two values.
  *
- * @param {string} value
- * @param {string} alternative
+ * @param {string|string[]} value
+ * @param {string|string[]} alternative
  * @returns {number}
  */
 export function diceCoefficient(value, alternative) {
-  var value_ = String(value).toLowerCase()
-  var alt = String(alternative).toLowerCase()
-  var left = value_.length === 1 ? [value_] : bigram(value_)
-  var right = alt.length === 1 ? [alt] : bigram(alt)
+  /** @type {string} */
+  var value_
+  /** @type {string} */
+  var alt
+  /** @type {string[]} */
+  var left
+  /** @type {string[]} */
+  var right
+
+  if (Array.isArray(value)) {
+    left = value.map((valueBigram) => String(valueBigram).toLowerCase())
+  } else {
+    value_ = String(value).toLowerCase()
+    left = value_.length === 1 ? [value_] : bigram(value_)
+  }
+
+  if (Array.isArray(alternative)) {
+    right = alternative.map((altBigram) => String(altBigram).toLowerCase())
+  } else {
+    alt = String(alternative).toLowerCase()
+    right = alt.length === 1 ? [alt] : bigram(alt)
+  }
+
   var index = -1
   var intersections = 0
   /** @type {string} */
