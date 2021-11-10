@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import fs from 'fs'
-import {URL} from 'url'
+import process from 'node:process'
+import fs from 'node:fs'
+import {URL} from 'node:url'
 import {diceCoefficient} from './index.js'
 
 /** @type {Object.<string, unknown>} */
