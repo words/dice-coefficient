@@ -9,13 +9,13 @@ import {bigram} from 'n-gram'
  */
 export function diceCoefficient(value, alternative) {
   /** @type {string} */
-  var value_
+  let value_
   /** @type {string} */
-  var alt
+  let alt
   /** @type {string[]} */
-  var left
+  let left
   /** @type {string[]} */
-  var right
+  let right
 
   if (Array.isArray(value)) {
     left = value.map((valueBigram) => String(valueBigram).toLowerCase())
@@ -31,14 +31,14 @@ export function diceCoefficient(value, alternative) {
     right = alt.length === 1 ? [alt] : bigram(alt)
   }
 
-  var index = -1
-  var intersections = 0
+  let index = -1
+  let intersections = 0
   /** @type {string} */
-  var leftPair
+  let leftPair
   /** @type {string} */
-  var rightPair
+  let rightPair
   /** @type {number} */
-  var offset
+  let offset
 
   while (++index < left.length) {
     leftPair = left[index]

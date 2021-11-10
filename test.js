@@ -6,7 +6,7 @@ import test from 'tape'
 import {diceCoefficient as m} from './index.js'
 
 /** @type {Object.<string, unknown>} */
-var pack = JSON.parse(
+const pack = JSON.parse(
   String(fs.readFileSync(new URL('./package.json', import.meta.url)))
 )
 
@@ -26,9 +26,9 @@ test('api', function (t) {
 })
 
 test('cli', function (t) {
-  var input = new PassThrough()
-  var helps = ['-h', '--help']
-  var versions = ['-v', '--version']
+  const input = new PassThrough()
+  const helps = ['-h', '--help']
+  const versions = ['-v', '--version']
 
   t.plan(9)
 
@@ -56,7 +56,7 @@ test('cli', function (t) {
     t.deepEqual([error, stdout, stderr], [null, '0\n', ''], 'not same')
   })
 
-  var subprocess = exec('./cli.js', function (error, stdout, stderr) {
+  const subprocess = exec('./cli.js', function (error, stdout, stderr) {
     t.deepEqual([error, stdout, stderr], [null, '0\n', ''], 'stdin')
   })
 
