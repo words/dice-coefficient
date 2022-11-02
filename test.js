@@ -7,7 +7,7 @@ import {diceCoefficient as m} from './index.js'
 
 /** @type {Object.<string, unknown>} */
 const pack = JSON.parse(
-  String(fs.readFileSync(new URL('./package.json', import.meta.url)))
+  String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )
 
 test('api', function (t) {

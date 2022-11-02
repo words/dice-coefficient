@@ -6,7 +6,7 @@ import {diceCoefficient} from './index.js'
 
 /** @type {Object.<string, unknown>} */
 const pack = JSON.parse(
-  String(fs.readFileSync(new URL('./package.json', import.meta.url)))
+  String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )
 
 const argv = process.argv.slice(2)
