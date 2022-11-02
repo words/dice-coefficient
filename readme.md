@@ -7,21 +7,57 @@
 
 [Sørensen–Dice coefficient][wiki].
 
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`diceCoefficient(value, other)`](#dicecoefficientvalue-other)
+*   [CLI](#cli)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [Security](#security)
+*   [License](#license)
+
+## What is this?
+
+This package exposes a string similarity algorithm.
+That means it gets two strings (typically words), and turns it into a number
+between `0` (completely different) and `1` (exactly the same).
+
+## When should I use this?
+
+You’re probably dealing with natural language, and know you need this, if
+you’re here!
+
 ## Install
 
-This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
-instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 14.14+, 16.0+), install with [npm][]:
 
 ```sh
 npm install dice-coefficient
 ```
 
-## API
+In Deno with [`esm.sh`][esmsh]:
 
-This package exports the following identifiers: `diceCoefficient`.
-There is no default export.
+```js
+import {diceCoefficient} from 'https://esm.sh/dice-coefficient@2'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {diceCoefficient} from 'https://esm.sh/dice-coefficient@2?bundle'
+</script>
+```
+
+## Use
 
 ```js
 import {diceCoefficient} from 'dice-coefficient'
@@ -32,25 +68,32 @@ diceCoefficient('night', 'nacht') // => 0.25
 diceCoefficient('night', 'nacht') === dice('NiGhT', 'NACHT') // => true
 ```
 
-Instead of strings you can also pass lists of bigrams.
-This can improve performance when processing the same strings repeatedly.
+## API
 
-```js
-diceCoefficient(['ab', 'bc'], ['xy', 'yz']) // => 0
-diceCoefficient(['ab', 'bc'], ['ab', 'bc']) // => 1
-diceCoefficient(['ab', 'bc'], ['AB', 'BC']) // => 1
-```
+This package exports the identifier `diceCoefficient`.
+There is no default export.
 
-See [`n-gram`](https://github.com/words/n-gram) for generating bigrams.
+### `diceCoefficient(value, other)`
 
-```js
-import {bigram} from 'n-gram'
+Get the difference according to Sørensen–Dice.
 
-const abc = bigram('abc') // => ['ab', 'bc']
-const xyz = bigram('xyz') // => ['xy', 'yz']
+> 👉 **Note**: you can pass bigrams (from [`n-gram`][n-gram]) too, which will
+> improve performance when you are comparing the same values multiple times.
 
-diceCoefficient(abc, xyz) // => 0
-```
+###### `value`
+
+Primary value (`string`, `Array<String>`, required).
+
+###### `other`
+
+Other value (`string`, `Array<String>`, required).
+
+##### Returns
+
+Difference (`number`).
+
+The result is normalized to a number between `0` (completely different)
+and `1` (exactly the same).
 
 ## CLI
 
@@ -75,18 +118,38 @@ $ echo "saturday sunday" | dice-coefficient
 # 0.3333333333333333
 ```
 
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+This package is at least compatible with all maintained versions of Node.js.
+As of now, that is Node.js 14.14+ and 16.0+.
+It also works in Deno and modern browsers.
+
 ## Related
 
 *   [`levenshtein-edit-distance`](https://github.com/words/levenshtein-edit-distance)
-    — Levenshtein edit distance
+    — levenshtein edit distance
 *   [`lancaster-stemmer`](https://github.com/words/lancaster-stemmer)
-    — Lancaster stemming algorithm
+    — lancaster stemming algorithm
 *   [`double-metaphone`](https://github.com/words/double-metaphone)
-    — Double Metaphone implementation
+    — double metaphone algorithm
 *   [`soundex-code`](https://github.com/words/soundex-code)
-    — Fast Soundex implementation
+    — soundex algorithm
 *   [`syllable`](https://github.com/words/syllable)
-    — Syllable count in an English word
+    — syllable count of English words
+
+## Contribute
+
+Yes please!
+See [How to Contribute to Open Source][contribute].
+
+## Security
+
+This package is safe.
 
 ## License
 
@@ -112,8 +175,18 @@ $ echo "saturday sunday" | dice-coefficient
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
+[contribute]: https://opensource.guide/how-to-contribute/
+
 [license]: license
 
 [author]: https://wooorm.com
 
 [wiki]: https://en.wikipedia.org/wiki/Sørensen–Dice_coefficient
+
+[n-gram]: https://github.com/words/n-gram

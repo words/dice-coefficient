@@ -1,11 +1,20 @@
 import {bigram} from 'n-gram'
 
 /**
- * Get the edit-distance according to Dice between two values.
+ * Get the difference according to Sørensen–Dice.
+ *
+ * > 👉 **Note**: you can pass bigrams (from [`n-gram`][n-gram]) too, which will
+ * > improve performance when you are comparing the same values multiple times.
  *
  * @param {string|Array<string>} value
+ *   Primary value.
  * @param {string|Array<string>} other
+ *   Other value.
  * @returns {number}
+ *   Difference.
+ *
+ *   The result is normalized to a number between `0` (completely different)
+ *   and `1` (exactly the same).
  */
 export function diceCoefficient(value, other) {
   const left = toPairs(value)
