@@ -3,8 +3,8 @@ import {bigram} from 'n-gram'
 /**
  * Get the edit-distance according to Dice between two values.
  *
- * @param {string|string[]} value
- * @param {string|string[]} alternative
+ * @param {string|Array<string>} value
+ * @param {string|Array<string>} alternative
  * @returns {number}
  */
 export function diceCoefficient(value, alternative) {
@@ -12,9 +12,9 @@ export function diceCoefficient(value, alternative) {
   let value_
   /** @type {string} */
   let alt
-  /** @type {string[]} */
+  /** @type {Array<string>} */
   let left
-  /** @type {string[]} */
+  /** @type {Array<string>} */
   let right
 
   if (Array.isArray(value)) {

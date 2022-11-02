@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import {URL} from 'node:url'
 import {diceCoefficient} from './index.js'
 
-/** @type {Object.<string, unknown>} */
+/** @type {Record<string, unknown>} */
 const pack = JSON.parse(
   String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )

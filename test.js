@@ -1,3 +1,4 @@
+import assert from 'node:assert/strict'
 import {exec} from 'node:child_process'
 import fs from 'node:fs'
 import {URL} from 'node:url'
@@ -5,7 +6,7 @@ import {PassThrough} from 'node:stream'
 import test from 'tape'
 import {diceCoefficient as m} from './index.js'
 
-/** @type {Object.<string, unknown>} */
+/** @type {Record<string, unknown>} */
 const pack = JSON.parse(
   String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )
@@ -34,7 +35,7 @@ test('cli', function (t) {
 
   exec('./cli.js abc', function (error, stdout, stderr) {
     t.deepEqual(
-      [error.code, stdout, /Usage: dice-coefficient/.test(stderr)],
+      [error?.code, stdout, /Usage: dice-coefficient/.test(stderr)],
       [1, '', true],
       'not enough arguments'
     )
@@ -42,7 +43,7 @@ test('cli', function (t) {
 
   exec('./cli.js abc abc abc', function (error, stdout, stderr) {
     t.deepEqual(
-      [error.code, stdout, /Usage: dice-coefficient/.test(stderr)],
+      [error?.code, stdout, /Usage: dice-coefficient/.test(stderr)],
       [1, '', true],
       'too many arguments'
     )
@@ -60,6 +61,7 @@ test('cli', function (t) {
     t.deepEqual([error, stdout, stderr], [null, '0\n', ''], 'stdin')
   })
 
+  assert(subprocess.stdin, 'shoud have `stdin` on child process')
   input.pipe(subprocess.stdin)
   input.write('abc')
   setImmediate(function () {
